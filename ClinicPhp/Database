@@ -1,0 +1,56 @@
+-- Create the database
+CREATE DATABASE clinicphp;
+USE clinicphp;
+
+-- Create users table
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    surname VARCHAR(255) NOT NULL,
+    middleInitial VARCHAR(10),
+    firstName VARCHAR(255) NOT NULL,
+    birthday DATE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    contactNumber VARCHAR(20),
+    age INT(11),
+    address VARCHAR(255),
+    description TEXT,
+    checkup VARCHAR(100),
+    admin TINYINT(1) DEFAULT 0,
+    gender ENUM('Male','Female','Other','Prefer not to say'),
+    civilStatus ENUM('Single','Married','Divorced','Widowed','Separated'),
+    occupation VARCHAR(100),
+    existingMedical TEXT,
+    currentMedication TEXT,
+    allergies TEXT,
+    familyMedical TEXT,
+    bloodPressure VARCHAR(20),
+    heartRate VARCHAR(20),
+    temperature VARCHAR(20),
+    height VARCHAR(20),
+    weight VARCHAR(20),
+    guardian VARCHAR(100),
+    relationship VARCHAR(50),
+    guardianContact VARCHAR(15),
+    philhealth TINYINT(1) DEFAULT 0,
+    seniorCitizen TINYINT(1) DEFAULT 0,
+    emergency_contact_number VARCHAR(15),
+);
+
+CREATE TABLE appointments (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    user_id INT(11),
+    patient_name VARCHAR(255) NOT NULL,
+    appointment_date DATE NOT NULL,
+    appointment_number INT(11) NOT NULL,
+    is_completed BOOLEAN DEFAULT FALSE;
+);
+
+CREATE TABLE medicines (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    description TEXT,
+    quantity INT(11) NOT NULL DEFAULT 0,
+    expiration_date VARCHAR(7) COMMENT 'Format: YYYY-MM'
+);
